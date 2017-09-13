@@ -22,7 +22,7 @@ RSpec.describe FDE::Slack::Message do
 
   let(:fields) { [field.to_h] }
 
-  let(:value) { "William Shakespeare" }
+  let(:footer_value) { "William Shakespeare" }
   let(:footer) do
     FDE::Slack::Footer.new(title, value)
   end
@@ -65,7 +65,7 @@ RSpec.describe FDE::Slack::Message do
   end
 
   context 'with an author', :vcr do
-    subject { described_class.new(main_title, fields, author) }
+    subject { described_class.new(main_title, fields, author: author) }
 
     describe '#error', :vcr do
       it 'should send a info message' do
@@ -80,7 +80,9 @@ RSpec.describe FDE::Slack::Message do
   end
 
   context 'with a footer', :vcr do
-    subject { described_class.new(main_title, fields, author, footer) }
+    subject do
+      described_class.new(main_title, fields, author: author, footer: footer)
+    end
 
     describe '#warning', :vcr do
       it 'should send a info message' do
@@ -93,7 +95,7 @@ RSpec.describe FDE::Slack::Message do
     end
   end
 
-  describe '#add_field', :vcr do
+  describe '#add_field' do
     subject { described_class.new(main_title, fields) }
     let(:another_title) { "Another Title" }
     let(:another_value) { "Value 1234" }

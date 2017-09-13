@@ -13,12 +13,18 @@ module FDE
         :footer,
         :color
 
-      def initialize(title, fields, author = nil, footer = nil, username = nil)
-        @username = username || 'FDE Slack Notifier'
+      def initialize(title, fields, options = {})
         @title = title
-        @author = author
         @fields = fields
-        @footer = footer
+        if options[:username]
+          @username = options[:username] || 'FDE Slack Notifier'
+        end
+        if options[:author]
+          @author = options[:author]
+        end
+        if options[:footer]
+          @footer = options[:footer]
+        end
       end
 
       def info(channel)
