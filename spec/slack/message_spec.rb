@@ -42,7 +42,7 @@ RSpec.describe FDE::Slack::Message do
       end
     end
 
-    describe '#info' do
+    describe '#info', :vcr do
       it 'should send a info message' do
         expect(subject.info(channel).code).to eq("200")
       end
@@ -52,7 +52,7 @@ RSpec.describe FDE::Slack::Message do
       end
     end
 
-    describe '#success' do
+    describe '#success', :vcr do
       it 'should send a info message' do
         expect(subject.success(channel).code).to eq("200")
       end
@@ -67,7 +67,7 @@ RSpec.describe FDE::Slack::Message do
   context 'with an author', :vcr do
     subject { described_class.new(main_title, fields, author) }
 
-    describe '#error' do
+    describe '#error', :vcr do
       it 'should send a info message' do
         expect(subject.error(channel).code).to eq("200")
       end
@@ -82,7 +82,7 @@ RSpec.describe FDE::Slack::Message do
   context 'with a footer', :vcr do
     subject { described_class.new(main_title, fields, author, footer) }
 
-    describe '#warning' do
+    describe '#warning', :vcr do
       it 'should send a info message' do
         expect(subject.warning(channel).code).to eq("200")
       end

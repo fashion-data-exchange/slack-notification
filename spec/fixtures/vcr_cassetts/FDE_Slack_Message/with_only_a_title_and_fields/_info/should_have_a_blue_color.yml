@@ -5,7 +5,7 @@ http_interactions:
     uri: https://hooks.slack.com/services/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
     body:
       encoding: US-ASCII
-      string: payload=%7B%22channel%22%3A%22fde-edi%22%2C%22username%22%3A%22FDE+Slack+Notifier%22%2C%22attachments%22%3A%5B%7B%22fallback%22%3A%22Test+FDE+Slack+Notification%22%2C%22ts%22%3A1505292630%2C%22color%22%3A%22%23BDE5F8%22%2C%22fields%22%3A%5B%7B%22title%22%3A%22A+Test+Title%22%2C%22value%22%3A%22William+Shakespeare%22%2C%22short%22%3Afalse%7D%5D%7D%5D%7D
+      string: payload=%7B%22channel%22%3A%22fde-edi%22%2C%22username%22%3A%22FDE+Slack+Notifier%22%2C%22attachments%22%3A%5B%7B%22fallback%22%3A%22Test+FDE+Slack+Notification%22%2C%22ts%22%3A1505294615%2C%22color%22%3A%22%23BDE5F8%22%2C%22fields%22%3A%5B%7B%22title%22%3A%22A+Test+Title%22%2C%22value%22%3A%22William+Shakespeare%22%2C%22short%22%3Afalse%7D%5D%7D%5D%7D
     headers:
       Accept-Encoding:
       - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
@@ -29,7 +29,7 @@ http_interactions:
       Access-Control-Allow-Origin:
       - "*"
       Date:
-      - Wed, 13 Sep 2017 08:50:31 GMT
+      - Wed, 13 Sep 2017 09:23:35 GMT
       Referrer-Policy:
       - no-referrer
       Server:
@@ -45,12 +45,12 @@ http_interactions:
       X-Cache:
       - Miss from cloudfront
       Via:
-      - 1.1 1415e6a9d308119037d1fa89386da72a.cloudfront.net (CloudFront)
+      - 1.1 bd5652a800046ffa43683320c0e731b4.cloudfront.net (CloudFront)
       X-Amz-Cf-Id:
-      - REZxf7IV8V2gIgjRwjTNz-94ZPbBRDvJ6XGWjvi0syBxNn_ZSPBmdA==
+      - rMdyHYRDsmVbku2X7XbIuGf6NYl5VeGu-4boWNH9bgvR3GVq6hlhHw==
     body:
       encoding: ASCII-8BIT
       string: ok
     http_version: 
-  recorded_at: Wed, 13 Sep 2017 08:50:31 GMT
+  recorded_at: Wed, 13 Sep 2017 09:23:35 GMT
 recorded_with: VCR 3.0.3
