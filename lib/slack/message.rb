@@ -16,6 +16,9 @@ module FDE
       def initialize(title, fields, options = {})
         @title = title
         @fields = fields
+        if options[:title_link]
+          @title_link = options[:title_link]
+        end
         if options[:username]
           @username = options[:username] || 'FDE Slack Notifier'
         end
@@ -75,6 +78,7 @@ module FDE
         }
         hash.merge!(@author.to_h)
         hash.merge!(@footer.to_h)
+        hash.merge!(@title_link.to_h)
         hash
       end
     end
