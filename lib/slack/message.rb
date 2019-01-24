@@ -1,10 +1,14 @@
 module FDE
   module Slack
     class Message
+
+      class Error < StandardError; end
+
       BLUE = '#BDE5F8'.freeze
       GREEN = '#DFF2BF'.freeze
       YELLOW = '#FEEFB3'.freeze
       RED = '#FFBABA'.freeze
+
 
       attr_accessor :username,
         :title,
@@ -62,7 +66,11 @@ module FDE
           channel: channel,
           username: @username
         )
-        notifier.ping message_hash
+        begin 
+          notifier.ping message_hash
+        rescue Slack::Notifier::APIError
+          raise FDE::Slack::Message::Error
+        end
       end
 
       def message_hash
