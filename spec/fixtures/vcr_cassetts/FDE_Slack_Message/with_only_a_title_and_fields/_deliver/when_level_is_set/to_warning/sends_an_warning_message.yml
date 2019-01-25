@@ -1,0 +1,56 @@
+---
+http_interactions:
+- request:
+    method: post
+    uri: https://hooks.slack.com/services/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
+    body:
+      encoding: US-ASCII
+      string: payload=%7B%22channel%22%3A%22%23channel%22%2C%22username%22%3Anull%2C%22attachments%22%3A%5B%7B%22fallback%22%3A%22Test+FDE+Slack+Notification%22%2C%22ts%22%3A1548410301%2C%22color%22%3A%22%23BDE5F8%22%2C%22fields%22%3A%5B%7B%22title%22%3A%22A+Test+Title%22%2C%22value%22%3A%22Something+meaningful%22%2C%22short%22%3Afalse%7D%5D%7D%5D%7D
+    headers:
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - "*/*"
+      User-Agent:
+      - Ruby
+      Content-Type:
+      - application/x-www-form-urlencoded
+  response:
+    status:
+      code: 404
+      message: Not Found
+    headers:
+      Content-Type:
+      - text/html
+      Transfer-Encoding:
+      - chunked
+      Connection:
+      - keep-alive
+      Date:
+      - Fri, 25 Jan 2019 09:58:22 GMT
+      Server:
+      - Apache
+      Vary:
+      - Accept-Encoding
+      Strict-Transport-Security:
+      - max-age=31536000; includeSubDomains; preload
+      Referrer-Policy:
+      - no-referrer
+      X-Frame-Options:
+      - SAMEORIGIN
+      Access-Control-Allow-Origin:
+      - "*"
+      X-Via:
+      - haproxy-www-suhx
+      X-Cache:
+      - Error from cloudfront
+      Via:
+      - 1.1 a576c90d056b9a2e1f473050b2981523.cloudfront.net (CloudFront)
+      X-Amz-Cf-Id:
+      - 6NPtyQqofhjwBgWMn6BV0O7DQTfKywHNtdXFoJIL4uFEe5V01tmCcg==
+    body:
+      encoding: UTF-8
+      string: channel_not_found
+    http_version: 
+  recorded_at: Fri, 25 Jan 2019 09:58:22 GMT
+recorded_with: VCR 3.0.3

@@ -34,24 +34,28 @@ module FDE
         end
       end
 
+      def deliver(channel, level: :info)
+        send(level, channel)
+      end
+
       def info(channel)
         @color = BLUE
-        send(channel)
+        send_message(channel)
       end
 
       def success(channel)
         @color = GREEN
-        send(channel)
+        send_message(channel)
       end
 
       def warning(channel)
         @color = YELLOW
-        send(channel)
+        send_message(channel)
       end
 
       def error(channel)
         @color = RED
-        send(channel)
+        send_message(channel)
       end
 
       def add_field(field)
@@ -60,7 +64,7 @@ module FDE
 
       private
 
-      def send(channel)
+      def send_message(channel)
         notifier = ::Slack::Notifier.new(
           FDE::Slack::Notification.config.webhook,
           channel: channel,

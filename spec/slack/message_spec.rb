@@ -42,6 +42,46 @@ RSpec.describe FDE::Slack::Message do
       end
     end
 
+    describe '#deliver' do
+      let(:channel) { '#channel' }
+      context 'when no level is specified' do
+        it 'defaults to info level' do
+          expect(subject).to receive(:info).with(channel)
+          subject.deliver(channel)
+        end
+      end
+      
+      context 'when level is set' do
+        context 'to info' do
+          it 'sends an info message' do
+            expect(subject).to receive(:info).with(channel)
+            subject.deliver(channel)
+          end
+        end
+
+        context 'to success' do
+          it 'sends an success message' do
+            expect(subject).to receive(:success).with(channel)
+            subject.deliver(channel, level: :success)
+          end
+        end
+
+        context 'to warning' do
+          it 'sends an warning message' do
+            expect(subject).to receive(:warning).with(channel)
+            subject.deliver(channel, level: :warning)
+          end
+        end
+
+        context 'to error' do
+          it 'sends an error message' do
+            expect(subject).to receive(:error).with(channel)
+            subject.deliver(channel, level: :error)
+          end
+        end
+      end
+    end
+
     describe '#info', :vcr do
       it 'should send a info message' do
         expect(subject.info(channel).code).to eq("200")
