@@ -2,10 +2,10 @@
 http_interactions:
 - request:
     method: post
-    uri: https://hooks.slack.com/services/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
+    uri: https://hooks.slack.com/services/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
     body:
       encoding: US-ASCII
-      string: payload=%7B%22channel%22%3A%22fde-edi%22%2C%22username%22%3Anull%2C%22attachments%22%3A%5B%7B%22fallback%22%3A%22Test+FDE+Slack+Notification%22%2C%22ts%22%3A1505332623%2C%22color%22%3A%22%23BDE5F8%22%2C%22fields%22%3A%5B%7B%22title%22%3A%22A+Test+Title%22%2C%22value%22%3A%22Something+meaningful%22%2C%22short%22%3Afalse%7D%5D%7D%5D%7D
+      string: payload=%7B%22channel%22%3A%22fde-edi%22%2C%22username%22%3Anull%2C%22attachments%22%3A%5B%7B%22fallback%22%3A%22Test+FDE+Slack+Notification%22%2C%22ts%22%3A1548409740%2C%22color%22%3A%22%23BDE5F8%22%2C%22fields%22%3A%5B%7B%22title%22%3A%22A+Test+Title%22%2C%22value%22%3A%22Something+meaningful%22%2C%22short%22%3Afalse%7D%5D%7D%5D%7D
     headers:
       Accept-Encoding:
       - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
@@ -26,31 +26,31 @@ http_interactions:
       - '22'
       Connection:
       - keep-alive
-      Access-Control-Allow-Origin:
-      - "*"
       Date:
-      - Wed, 13 Sep 2017 19:57:03 GMT
-      Referrer-Policy:
-      - no-referrer
+      - Fri, 25 Jan 2019 09:49:03 GMT
       Server:
       - Apache
-      Strict-Transport-Security:
-      - max-age=31536000; includeSubDomains; preload
       Vary:
       - Accept-Encoding
+      Strict-Transport-Security:
+      - max-age=31536000; includeSubDomains; preload
+      Referrer-Policy:
+      - no-referrer
       X-Frame-Options:
       - SAMEORIGIN
-      X-Slack-Backend:
-      - h
+      Access-Control-Allow-Origin:
+      - "*"
+      X-Via:
+      - haproxy-www-z620
       X-Cache:
       - Miss from cloudfront
       Via:
-      - 1.1 a034346227db119f7e0813186ca2d2c2.cloudfront.net (CloudFront)
+      - 1.1 df792ea3bbbe656e2f5c7b61aa85cc47.cloudfront.net (CloudFront)
       X-Amz-Cf-Id:
-      - qlFVu0hQFSO50m-Ja9QhVoQWdXfTo0eFTgXaqfVn63bUpsJ2QWGY0g==
+      - rSYOdvEzpBt-EWMDPA6OtsGuwcwM6buLp8MKCFD8fZcSCcPHnUeO_A==
     body:
       encoding: ASCII-8BIT
       string: ok
     http_version: 
-  recorded_at: Wed, 13 Sep 2017 19:57:04 GMT
+  recorded_at: Fri, 25 Jan 2019 09:49:03 GMT
 recorded_with: VCR 3.0.3

@@ -33,5 +33,5 @@ VCR.configure do |config|
 end
 
 FDE::Slack::Notification.configure do |config|
-  config.webhook = ENV.fetch('SLACK_WEBHOOK_URL')
+  config.webhook = ENV.fetch('FDE_SLACK_WEBHOOK_URL')
 end
