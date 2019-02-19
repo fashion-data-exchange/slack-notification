@@ -135,7 +135,7 @@ RSpec.describe FDE::Slack::Message do
     end
   end
 
-  describe '#add_field' do
+  describe '#add_field', :vcr do
     subject { described_class.new(main_title, fields) }
     let(:another_title) { "Another Title" }
     let(:another_value) { "Value 1234" }
