@@ -13,7 +13,7 @@ gem 'fde-slack-notification'
 And then execute:
 
 ```bash
-bundle
+bundle install
 ```
 
 ### Authorization
@@ -31,7 +31,7 @@ In order to send a notification to slack you can write a method like the followi
 ```ruby
   def notifier
 
-    message = FDE::slack::Message.new(
+    message = FDE::Slack::Message.new(
       'your message title',
       fields,
       {
@@ -41,7 +41,7 @@ In order to send a notification to slack you can write a method like the followi
             title_link: 'title',
             thumb_url: 'author_icon'
           },
-        footer: 'footer_text'
+        footer: FDE::Slack::Footer.new('footer_text).to_h
       }
     )
 
@@ -76,7 +76,7 @@ To set the hook_url value you may have a initializer under /config/initializers 
 require "slack/notification"
 
 
-FDE::slack::Notification.configure do |config|
+FDE::Slack::Notification.configure do |config|
   config.webhook = 'hook_url'
 end
 ```
