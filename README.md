@@ -84,7 +84,7 @@ end
 
 ### Styling
 
-Can any of these methods to get the following colored sidebars
+Any of these methods can be used to get the following colored sidebars
 
 1. message.info(channel) # BLUE
 2. message.success(channel) # GREEN
