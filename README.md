@@ -21,16 +21,15 @@ bundle install
 The client requires the following environment variables to be set:
 
 ```bash
-SLACK_FD_WEBHOOK_URL =  'https://hooks.slack.com' //your slack hook here
+SLACK_FD_WEBHOOK_URL =  'https://hooks.slack.com' //Your slack hook here
 ```
 
 ### Usage
 
-In order to send a notification to slack you can write a method like the following.
+In order to send a notification to slack, you can write a method like the following.
 
 ```ruby
   def notifier
-
     message = FDE::Slack::Message.new(
       'your message title',
       fields,
@@ -49,8 +48,7 @@ In order to send a notification to slack you can write a method like the followi
   end
   
   
-  # create a hash for your reqired fields
-  
+  # create a hash for your required fields
     def fields
       [
         {
@@ -70,11 +68,10 @@ In order to send a notification to slack you can write a method like the followi
 
 ### Configuration
 
-To set the hook_url value you may have a initializer under /config/initializers like this
+To set the hook_url value, you may have an initializer under `config/initializers` like this
 
 ```ruby
 require "slack/notification"
-
 
 FDE::Slack::Notification.configure do |config|
   config.webhook = 'hook_url'
@@ -88,5 +85,5 @@ Any of these methods can be used to get the following colored sidebars
 
 1. message.info(channel) # BLUE
 2. message.success(channel) # GREEN
-2. message.error(channel) # RED
-2. message.warning(channel) # Yellow
+3. message.error(channel) # RED
+4. message.warning(channel) # YELLOW
