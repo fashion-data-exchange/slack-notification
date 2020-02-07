@@ -50,6 +50,16 @@ RSpec.describe FDE::Slack::Message do
           subject.deliver(channel)
         end
       end
+
+      context 'when message sending throws an error', :focus do
+        before do
+          allow_any_instance_of(Slack::Notifier).to receive(:ping).and_raise(Slack::Notifier::APIError)
+        end
+
+        it 'should handle the error and throw an FDE::Slack::Message::Error' do
+          expect { subject.deliver(channel) }.to raise_error(FDE::Slack::Message::Error)
+        end
+      end
       
       context 'when level is set' do
         context 'to info' do
@@ -84,7 +94,7 @@ RSpec.describe FDE::Slack::Message do
 
     describe '#info', :vcr do
       it 'should send a info message' do
-        expect(subject.info(channel).code).to eq("200")
+        expect(subject.info(channel).first.code).to eq("200")
       end
       it 'should have a blue color' do
         subject.info(channel)
@@ -94,7 +104,7 @@ RSpec.describe FDE::Slack::Message do
 
     describe '#success', :vcr do
       it 'should send a info message' do
-        expect(subject.success(channel).code).to eq("200")
+        expect(subject.success(channel).first.code).to eq("200")
       end
 
       it 'should have a green color' do
@@ -109,7 +119,7 @@ RSpec.describe FDE::Slack::Message do
 
     describe '#error', :vcr do
       it 'should send a info message' do
-        expect(subject.error(channel).code).to eq("200")
+        expect(subject.error(channel).first.code).to eq("200")
       end
 
       it 'should have a red color' do
@@ -126,7 +136,7 @@ RSpec.describe FDE::Slack::Message do
 
     describe '#warning', :vcr do
       it 'should send a info message' do
-        expect(subject.warning(channel).code).to eq("200")
+        expect(subject.warning(channel).first.code).to eq("200")
       end
       it 'should have a yellow color' do
         subject.warning(channel)
@@ -155,7 +165,7 @@ RSpec.describe FDE::Slack::Message do
 
     it 'should send this new field' do
       subject.add_field(another_field)
-      expect(subject.success(channel).code).to eq("200")
+      expect(subject.success(channel).first.code).to eq("200")
     end
   end
 end

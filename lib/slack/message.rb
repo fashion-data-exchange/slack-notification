@@ -72,7 +72,7 @@ module FDE
         )
         begin 
           notifier.ping message_hash
-        rescue Slack::Notifier::APIError
+        rescue ::Slack::Notifier::APIError
           raise FDE::Slack::Message::Error
         end
       end
