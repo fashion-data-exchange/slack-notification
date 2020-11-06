@@ -5,6 +5,7 @@ require "slack/message"
 require "slack/field"
 require "slack/author"
 require "slack/footer"
+require "slack/util/http_client"
 
 module FDE
   module Slack
