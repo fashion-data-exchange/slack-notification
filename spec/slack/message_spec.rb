@@ -51,9 +51,48 @@ RSpec.describe FDE::Slack::Message do
         end
       end
 
-      context 'when message sending throws an error', :focus do
+      context 'when message sending hits Slack rate limit' do
+        let(:notifier) { instance_double(Slack::Notifier) }
+        let(:http_error) { Net::HTTPBadRequest.new("GET", "429", "Too Many Requests") }
+        let(:api_error) { FDE::Slack::APIError.new(http_error) }
+
         before do
-          allow_any_instance_of(Slack::Notifier).to receive(:ping).and_raise(Slack::Notifier::APIError)
+          http_error.header['Retry-After'] = "15"
+          allow(api_error).to receive(:message).and_return("error")
+        end
+
+        it 'should retry once after awaiting retry timout, then throw an error if it does not work the second time' do
+          expect(subject.retries).to eq(0)
+          expect(::Slack::Notifier).to receive(:new).ordered.and_return(notifier)
+
+          expect(notifier).to receive(:ping).and_raise(api_error)
+          expect(subject).to receive(:sleep).with(15)
+          expect(notifier).to receive(:ping).and_return(true)
+
+          expect { subject.deliver(channel) }.not_to raise_error
+          expect(subject.retries).to eq(1)
+        end
+
+        context 'when the retry fails' do
+          it 'throws an error' do
+            expect(subject.retries).to eq(0)
+            expect(::Slack::Notifier).to receive(:new).ordered.and_return(notifier)
+
+            expect(notifier).to receive(:ping).and_raise(api_error)
+            expect(subject).to receive(:sleep).with(15)
+            expect(notifier).to receive(:ping).and_raise(api_error)
+
+            expect { subject.deliver(channel) }.to raise_error(FDE::Slack::Message::Error)
+            expect(subject.retries).to eq(1)
+          end
+        end
+
+      end
+
+      context 'when message sending throws an error' do
+        let(:http_error) { Net::HTTPBadRequest.new("GET", "400", "Bad Request") }
+        before do
+          allow_any_instance_of(Slack::Notifier).to receive(:ping).and_raise(FDE::Slack::APIError.new(http_error))
         end
 
         it 'should handle the error and throw an FDE::Slack::Message::Error' do
