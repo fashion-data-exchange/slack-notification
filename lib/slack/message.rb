@@ -10,6 +10,7 @@ module FDE
       RED = '#FFBABA'.freeze
 
       RETRY_LIMIT = 1
+      TOO_MANY_REQUESTS_STATUS_CODE = "429"
 
 
       attr_accessor :username,
@@ -76,6 +77,8 @@ module FDE
           channel: channel,
           username: @username
         ) do
+          # configure Slack Notifier gem to use our custom HTTPClient
+          # see https://github.com/stevenosloan/slack-notifier#custom-http-client
           http_client FDE::Slack::Util::HTTPClient
         end
 
@@ -83,7 +86,7 @@ module FDE
           notifier.ping message_hash
         rescue FDE::Slack::APIError => api_error
           # TooManyRequests, Slack Rate Limit
-          if api_error.response.code == "429" && @retries < RETRY_LIMIT
+          if api_error.response.code == TOO_MANY_REQUESTS_STATUS_CODE && @retries < RETRY_LIMIT
             timeout = api_error.response.header['Retry-After'].to_i
             sleep(timeout) if timeout
             @retries += 1
