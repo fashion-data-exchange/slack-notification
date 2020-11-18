@@ -9,7 +9,7 @@ module FDE
       YELLOW = '#FEEFB3'.freeze
       RED = '#FFBABA'.freeze
 
-      RETRY_LIMIT = 1
+      RETRY_LIMIT = 3
       TOO_MANY_REQUESTS_STATUS_CODE = "429"
 
 
@@ -92,7 +92,8 @@ module FDE
             @retries += 1
             retry
           end
-          raise FDE::Slack::Message::Error
+          raise api_error, message_hash: message_hash
+
         end
       end
 
